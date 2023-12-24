@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 18:02:42 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/05 14:26:34 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/24 13:06:06 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	free_all(t_fdf *fdf)
 		free_map_formatted(fdf);
 	if (fdf->map->map)
 		free(fdf->map->map);
+	if (fdf->map->data)
+		free(fdf->map->data);
 	if (fdf->map)
 		free(fdf->map);
 	if (fdf)

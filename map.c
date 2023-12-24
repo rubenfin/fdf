@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:32:44 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/21 18:14:41 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/24 14:16:39 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ char	*read_map(const char *map, t_fdf *fdf)
 	char	*str;
 
 	str = malloc(1);
+	if (!str)
+		exit_and_close(fdf);
 	str[0] = '\0';
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
@@ -140,10 +142,39 @@ char	*read_map(const char *map, t_fdf *fdf)
 			break ;
 		if (r == -1)
 			exit_and_close(fdf);
+		buffer[r] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
 	close(fd);
 	return (str);
+}
+
+void	find_highest_and_lowest(t_map *map)
+{
+	int	x;
+	int	y;
+	int	lowest;
+	int	highest;
+
+	x = 0;
+	y = 0;
+	lowest = INT_MAX;
+	highest = INT_MIN;
+	while (x < map->height)
+	{
+		y = 0;
+		while (y < map->width)
+		{
+			if (map->z_index[x][y] > highest)
+				highest = map->z_index[x][y];
+			if (map->z_index[x][y] < lowest)
+				lowest = map->z_index[x][y];
+			y++;
+		}
+		x++;
+	}
+	map->highest = highest;
+	map->lowest = lowest;
 }
 
 void	get_map(const char *argv[], t_fdf *fdf)
@@ -161,5 +192,7 @@ void	get_map(const char *argv[], t_fdf *fdf)
 		exit_and_close(fdf);
 	malloc_map(fdf);
 	fill_map(fdf->map);
+	find_highest_and_lowest(fdf->map);
 	print_formatted(fdf->map);
+	printf("HIGHEST: %d, LOWEST: %d", fdf->map->highest, fdf->map->lowest);
 }

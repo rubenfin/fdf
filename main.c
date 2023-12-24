@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:55:10 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 15:48:39 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/24 14:31:11 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	argc_check(int argc, t_fdf *fdf)
 		perror("Too many arguments:  usage ./a.out map.fdf  \n");
 	free_all(fdf);
 	exit(EXIT_FAILURE);
-	return (0);
 }
 
 int	init_map(t_fdf *fdf)
@@ -36,11 +35,11 @@ int	init_map(t_fdf *fdf)
 	fdf->map->map_formatted = 0;
 	fdf->map->del_count = 0;
 	fdf->map->map_zoom = 5;
-	fdf->map->pixel_pos_x = 900;
-	fdf->map->pixel_pos_y = 550;
 	fdf->map->z_index = 0;
 	fdf->map->data = 0;
 	fdf->map->data = (t_data *)malloc(sizeof(t_data));
+	fdf->map->data->pixel_pos_x = 900;
+	fdf->map->data->pixel_pos_y = 550;
 	fdf->map->data->x = 0.0;
 	fdf->map->data->y = 0;
 	fdf->map->data->x1 = 0;
@@ -49,7 +48,6 @@ int	init_map(t_fdf *fdf)
 	fdf->map->data->z1 = 0;
 	fdf->map->data->iso = 1;
 	fdf->map->data->move_z = 1;
-	fdf->map->data->move_z1 = 1;
 	return (1);
 }
 

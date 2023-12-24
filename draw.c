@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:34:09 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 15:51:42 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/24 14:31:59 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	color_plus(int z)
 {
-	if (z > 12)
+	if (z > 100)
 		return (COLOR_TEN);
 	else if (z > 11)
 		return (COLOR_NINE);
@@ -57,7 +57,7 @@ int	color_minus(int z)
 		return (COLOR_MINEIGHT);
 	else if (z > -11)
 		return (COLOR_MINNINE);
-	else if (z > -12)
+	else if (z <= -12)
 		return (COLOR_MINTEN);
 	return (0xFFFFFFFF);
 }
@@ -103,16 +103,16 @@ void	map_zoom(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
 
 void	calculate_pos(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
 {
-	*x += fdf->map->pixel_pos_x;
-	*y += fdf->map->pixel_pos_y;
-	*x1 += fdf->map->pixel_pos_x;
-	*y1 += fdf->map->pixel_pos_y;
+	*x += fdf->map->data->pixel_pos_x;
+	*y += fdf->map->data->pixel_pos_y;
+	*x1 += fdf->map->data->pixel_pos_x;
+	*y1 += fdf->map->data->pixel_pos_y;
 }
 
 void	move_z(int *z, int *z1, t_fdf *fdf)
 {
 	*z *= fdf->map->data->move_z;
-	*z1 *= fdf->map->data->move_z1;
+	*z1 *= fdf->map->data->move_z;
 }
 
 void	bresenham(float x, float y, float x1, float y1, t_fdf *fdf)

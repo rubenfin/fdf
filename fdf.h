@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 15:20:12 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/24 12:50:42 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // libraries
 # include </home/rfinneru/Codam/rank 02/MLX42/include/MLX42/MLX42.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -50,7 +51,7 @@
 # define COLOR_MINSEVEN 0x3559a1FF
 # define COLOR_MINEIGHT 0x224b9cFF
 # define COLOR_MINNINE 0x124099FF
-# define COLOR_MINTEN 0x00308fFF
+# define COLOR_MINTEN 0x000098FF
 
 typedef struct t_data
 {
@@ -62,7 +63,8 @@ typedef struct t_data
 	int			z1;
 	int			iso;
 	float		move_z;
-	float		move_z1;
+	int			pixel_pos_x;
+	int			pixel_pos_y;
 }				t_data;
 
 typedef struct t_map
@@ -74,8 +76,8 @@ typedef struct t_map
 	int			del_count;
 	int			**z_index;
 	double		map_zoom;
-	int			pixel_pos_x;
-	int			pixel_pos_y;
+	int			highest;
+	int			lowest;
 	t_data		*data;
 }				t_map;
 
