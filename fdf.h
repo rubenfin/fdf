@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 12:07:57 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/22 15:20:12 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct t_data
 	float		y1;
 	int			z;
 	int			z1;
+	int			iso;
+	float		move_z;
+	float		move_z1;
 }				t_data;
 
 typedef struct t_map
@@ -95,7 +98,7 @@ int				get_map_height(char *map);
 // draw -> draw map parsed from fd
 void			draw_map(void *param);
 void			bresenham(float x, float y, float x1, float y1, t_fdf *fdf);
-void			iso_transform(float *x, float *y, int z);
+void			iso_transform(float *x, float *y, int z, t_fdf *fdf);
 void			reset_map(t_fdf *fdf);
 
 // move

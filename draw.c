@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:34:09 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 12:33:59 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/22 15:51:42 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,28 +87,14 @@ int	mod(int x)
 		return (x);
 }
 
-void	iso_transform(float *x, float *y, int z)
+void	iso_transform(float *x, float *y, int z, t_fdf *fdf)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	*x = (*x - *y) * cos(0.8 * fdf->map->data->x);
+	*y = (*x + *y) * sin(0.8 + fdf->map->data->y) - (z + fdf->map->data->z);
 }
 
 void	map_zoom(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
 {
-	if (fdf->map->height > 250 && fdf->map->width > 250)
-		fdf->map->map_zoom = 1.75;
-	else if (fdf->map->height > 150 && fdf->map->width > 150)
-		fdf->map->map_zoom = 3;
-	else if (fdf->map->height > 100 && fdf->map->width > 100)
-		fdf->map->map_zoom = 7;
-	else if (fdf->map->height > 50 && fdf->map->width > 50)
-		fdf->map->map_zoom = 16;
-	else if (fdf->map->height > 25 || fdf->map->width > 25)
-		fdf->map->map_zoom = 26;
-	else if (fdf->map->height >= 10 || fdf->map->width >= 10)
-		fdf->map->map_zoom = 45;
-	else if (fdf->map->height < 10 || fdf->map->width < 10)
-		fdf->map->map_zoom = 69;
 	*x *= fdf->map->map_zoom;
 	*y *= fdf->map->map_zoom;
 	*x1 *= fdf->map->map_zoom;
@@ -117,12 +103,16 @@ void	map_zoom(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
 
 void	calculate_pos(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
 {
-	fdf->map->pixel_pos_x = 900;
-	fdf->map->pixel_pos_y = 250;
 	*x += fdf->map->pixel_pos_x;
 	*y += fdf->map->pixel_pos_y;
 	*x1 += fdf->map->pixel_pos_x;
 	*y1 += fdf->map->pixel_pos_y;
+}
+
+void	move_z(int *z, int *z1, t_fdf *fdf)
+{
+	*z *= fdf->map->data->move_z;
+	*z1 *= fdf->map->data->move_z1;
 }
 
 void	bresenham(float x, float y, float x1, float y1, t_fdf *fdf)
@@ -133,11 +123,15 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *fdf)
 	int		z;
 	int		z1;
 
-	fdf->map->data->z = fdf->map->z_index[(int)y][(int)x];
-	fdf->map->data->z1 = fdf->map->z_index[(int)y1][(int)x1];
+	z = fdf->map->z_index[(int)y][(int)x];
+	z1 = fdf->map->z_index[(int)y1][(int)x1];
+	move_z(&z, &z1, fdf);
 	map_zoom(&x, &y, &x1, &y1, fdf);
-	iso_transform(&x, &y, fdf->map->data->z);
-	iso_transform(&x1, &y1, fdf->map->data->z1);
+	if (fdf->map->data->iso)
+	{
+		iso_transform(&x, &y, z, fdf);
+		iso_transform(&x1, &y1, z1, fdf);
+	}
 	calculate_pos(&x, &y, &x1, &y1, fdf);
 	x_step = x1 - x;
 	y_step = y1 - y;
@@ -147,7 +141,7 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *fdf)
 	while ((int)(x - x1) || (int)(y - y1))
 	{
 		if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
-			mlx_put_pixel(fdf->image, x, y, get_color(fdf->map->data->z));
+			mlx_put_pixel(fdf->image, x, y, get_color(z));
 		x += x_step;
 		y += y_step;
 	}
@@ -178,8 +172,6 @@ void	draw_map(void *param)
 	int		x;
 	t_fdf	*fdf;
 
-	y = 0;
-	x = 0;
 	fdf = (t_fdf *)param;
 	reset_map(fdf);
 	while (y < fdf->map->height)
