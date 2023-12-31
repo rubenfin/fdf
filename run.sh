@@ -1,1 +1,0 @@
- cc main.c draw.c fdf_utils.c map.c safety.c print.c move.c window.c libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -g -o ./fdf

@@ -1,4 +1,4 @@
-SRCS_MANDATORY = draw.c fdf_utils.c main.c map.c move.c safety.c window.c
+SRCS_MANDATORY = draw.c fdf_utils.c main.c map.c move.c safety.c window.c math.c
 
 OBJS = $(SRCS_MANDATORY:%.c=$(OBJS_DIR)/%.o)
 OBJS_DIR = objs

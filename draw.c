@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:34:09 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/31 15:26:41 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 17:26:51 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,12 @@ int	get_color(int z)
 	return (0xFFFFFFFF);
 }
 
-int	max_f(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-int	mod(int x)
-{
-	if (x < 0)
-		return (-x);
-	else
-		return (x);
-}
 
 void	iso_transform(float *x, float *y, int z, t_fdf *fdf)
 {
-	*x = (*x - *y) * cos(0.8 * fdf->map->data->x);
-	*y = (*x + *y) * sin(0.8 + fdf->map->data->y) - (z + fdf->map->data->z);
+	*x = (*x - *y) * cos(0.8 * fdf->map->data->angle_cos);
+	*y = (*x + *y) * sin(0.8 + fdf->map->data->angle_y) - (z
+			+ fdf->map->data->angle_z);
 }
 
 void	map_zoom(float *x, float *y, float *x1, float *y1, t_fdf *fdf)
@@ -113,38 +99,6 @@ void	move_z(int *z, int *z1, t_fdf *fdf)
 {
 	*z *= fdf->map->data->move_z;
 	*z1 *= fdf->map->data->move_z;
-}
-
-void	bresenham(float x, float y, float x1, float y1, t_fdf *fdf)
-{
-	float	x_step;
-	float	y_step;
-	int		max;
-	int		z;
-	int		z1;
-
-	z = fdf->map->z_index[(int)y][(int)x];
-	z1 = fdf->map->z_index[(int)y1][(int)x1];
-	move_z(&z, &z1, fdf);
-	map_zoom(&x, &y, &x1, &y1, fdf);
-	if (fdf->map->data->iso)
-	{
-		iso_transform(&x, &y, z, fdf);
-		iso_transform(&x1, &y1, z1, fdf);
-	}
-	calculate_pos(&x, &y, &x1, &y1, fdf);
-	x_step = x1 - x;
-	y_step = y1 - y;
-	max = max_f(mod(x_step), mod(y_step));
-	x_step /= max;
-	y_step /= max;
-	while ((int)(x - x1) || (int)(y - y1))
-	{
-		if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
-			mlx_put_pixel(fdf->image, x, y, get_color(z));
-		x += x_step;
-		y += y_step;
-	}
 }
 
 void	reset_map(t_fdf *fdf)

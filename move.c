@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/09 11:24:00 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/31 16:36:07 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 17:11:24 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_hook(void *param)
 {
 	t_fdf	*fdf;
 
-	fdf = (t_fdf *)param;
+	fdf = (t_fdf *)param;		
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE) || mlx_is_key_down(fdf->mlx,
 			MLX_KEY_1))
 		mlx_close_window(fdf->mlx);
@@ -49,33 +49,29 @@ void	ft_hook(void *param)
 		fdf->map->data->pixel_pos_x += 10 + fdf->map->map_zoom;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
 	{
-		fdf->map->data->x += 0.04;
+		fdf->map->data->angle_cos += 0.04;
 		// fdf->map->data->z += 0.5;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
 	{
-		fdf->map->data->x -= 0.04;
+		fdf->map->data->angle_cos -= 0.04;
 		// fdf->map->data->z -= 0.5;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
 	{
-		fdf->map->data->y += 0.05;
+		fdf->map->data->angle_y += 0.05;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
 	{
-		fdf->map->data->y -= 0.05;
+		fdf->map->data->angle_y -= 0.05;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
 	{
 		fdf->map->map_zoom = 5;
 		fdf->map->data->pixel_pos_x = 900;
 		fdf->map->data->pixel_pos_y = 550;
-		fdf->map->data->x = 0;
-		fdf->map->data->y = 0;
-		fdf->map->data->x1 = 0;
-		fdf->map->data->y1 = 0;
-		fdf->map->data->z = 0;
-		fdf->map->data->z1 = 0;
+		fdf->map->data->angle_cos = 0;
+		fdf->map->data->angle_y = 0;
 		fdf->map->data->iso = 1;
 		fdf->map->data->move_z = 1;
 	}

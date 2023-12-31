@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/27 14:33:07 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 17:10:37 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,9 @@
 
 typedef struct t_data
 {
-	float		x;
-	float		y;
-	float		x1;
-	float		y1;
-	int			z;
-	int			z1;
+	float		angle_cos;
+	float		angle_y;
+	int			angle_z;
 	int			iso;
 	float		move_z;
 	int			pixel_pos_x;

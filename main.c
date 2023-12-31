@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:55:10 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/24 14:31:11 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 17:12:38 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ int	init_map(t_fdf *fdf)
 	fdf->map->data = (t_data *)malloc(sizeof(t_data));
 	fdf->map->data->pixel_pos_x = 900;
 	fdf->map->data->pixel_pos_y = 550;
-	fdf->map->data->x = 0.0;
-	fdf->map->data->y = 0;
-	fdf->map->data->x1 = 0;
-	fdf->map->data->y1 = 0;
-	fdf->map->data->z = 0;
-	fdf->map->data->z1 = 0;
+	fdf->map->data->angle_cos = 0.0;
+	fdf->map->data->angle_y = 0;
+	fdf->map->data->move_z = 0;
 	fdf->map->data->iso = 1;
 	fdf->map->data->move_z = 1;
 	return (1);
