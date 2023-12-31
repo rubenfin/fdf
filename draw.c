@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:34:09 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/24 14:31:59 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 15:26:41 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	reset_map(t_fdf *fdf)
 		x = 0;
 		while (x < WIDTH)
 		{
-			mlx_put_pixel(fdf->image, x, y, 0x22222200);
+			mlx_put_pixel(fdf->image, x, y, BACKGROUND_COLOR);
 			x++;
 		}
 		y++;
@@ -174,6 +174,8 @@ void	draw_map(void *param)
 
 	fdf = (t_fdf *)param;
 	reset_map(fdf);
+	x = 0;
+	y = 0;
 	while (y < fdf->map->height)
 	{
 		x = 0;

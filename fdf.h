@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/24 12:50:42 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/27 14:33:07 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define HEIGHT 1920
 
 // colors
+# define BACKGROUND_COLOR 0x22222200
 // plus
 # define COLOR_ONE 0xFFFFEEFF
 # define COLOR_TWO 0xFFE8E8FF
@@ -78,6 +79,7 @@ typedef struct t_map
 	double		map_zoom;
 	int			highest;
 	int			lowest;
+	char		**color;
 	t_data		*data;
 }				t_map;
 
@@ -118,6 +120,7 @@ int				ft_strlen(char *str);
 int				ft_isnum(int c);
 int				ft_isalpha(int c);
 int				num_or_alph(int c);
+char			*ft_strnstr(const char *big, const char *little, size_t len);
 
 // printing map -> for testing purposes
 void			print_formatted(t_map *map);

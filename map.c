@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:32:44 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/24 14:16:39 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/31 15:40:52 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int	get_map_width(char *map)
 
 	i = 0;
 	count = 0;
-	if (ft_isnum(map[i]))
+	if (num_or_alph(map[i]))
 		count++;
 	while (map[i] && map[i] != '\n')
 	{
-		if (ft_isnum(map[i]) && map[i + 1] == ' ')
+		if (num_or_alph(map[i]) && map[i + 1] == ' ')
 			count++;
 		i++;
 	}
@@ -142,7 +142,6 @@ char	*read_map(const char *map, t_fdf *fdf)
 			break ;
 		if (r == -1)
 			exit_and_close(fdf);
-		buffer[r] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
 	close(fd);
@@ -177,6 +176,7 @@ void	find_highest_and_lowest(t_map *map)
 	map->lowest = lowest;
 }
 
+
 void	get_map(const char *argv[], t_fdf *fdf)
 {
 	fdf->map->map = read_map(argv[1], fdf);
@@ -193,6 +193,5 @@ void	get_map(const char *argv[], t_fdf *fdf)
 	malloc_map(fdf);
 	fill_map(fdf->map);
 	find_highest_and_lowest(fdf->map);
-	print_formatted(fdf->map);
 	printf("HIGHEST: %d, LOWEST: %d", fdf->map->highest, fdf->map->lowest);
 }

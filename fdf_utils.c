@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:41:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/16 13:33:26 by rfinneru      ########   odam.nl         */
+/*   Updated: 2023/12/27 13:51:43 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,4 +277,33 @@ int	num_or_alph(int c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0'
 			&& c <= '9'));
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t i;
+	int x;
+
+	i = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
+	while (*big && i < len)
+	{
+		x = 0;
+		while (*big == *little && i < len)
+		{
+			x++;
+			little++;
+			big++;
+			if (*little == '\0')
+				return ((char *)big - x);
+			i++;
+		}
+		i -= x;
+		little -= x;
+		big -= x;
+		big++;
+		i++;
+	}
+	return (0);
 }
