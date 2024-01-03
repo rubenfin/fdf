@@ -1,12 +1,13 @@
-SRCS_MANDATORY = draw.c fdf_utils.c main.c map.c move.c safety.c window.c math.c
+SRCS_MANDATORY = draw.c ft_split.c main.c read_map.c fill_map.c \
+hooks.c move.c safety.c safety2.c window.c math.c color.c math_utils.c fdf_utils.c fdf_utils2.c
 
 OBJS = $(SRCS_MANDATORY:%.c=$(OBJS_DIR)/%.o)
 OBJS_DIR = objs
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g 
 RM = rm -rf 
-MLXPATH = libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -g 
+MLXPATH = libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 VPATH = .
 
 INCLUDE = -I./.

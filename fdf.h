@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/31 17:10:37 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 13:19:26 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // libraries
 # include </home/rfinneru/Codam/rank 02/MLX42/include/MLX42/MLX42.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -54,6 +55,9 @@
 # define COLOR_MINNINE 0x124099FF
 # define COLOR_MINTEN 0x000098FF
 
+// MACROS
+# define UNUSED(x) (void)(x)
+
 typedef struct t_data
 {
 	float		angle_cos;
@@ -80,6 +84,14 @@ typedef struct t_map
 	t_data		*data;
 }				t_map;
 
+typedef struct s_point
+{
+	float		x;
+	float		y;
+	float		x1;
+	float		y1;
+}				t_point;
+
 typedef struct t_fdf
 {
 	t_map		*map;
@@ -87,23 +99,45 @@ typedef struct t_fdf
 	mlx_image_t	*image;
 }				t_fdf;
 
-// window -> creating window and adding controls to move the image
+/**
+ * creates a window, creates an image and puts the image inside this window.
+ */
 int				make_window(t_fdf *fdf);
+
+/**
+ * hook which refreshes every frame and checks if any key is pressed,
+ *	if so changes the variable according to this keypress
+ */
 void			ft_hook(void *param);
 
 // map -> parse map from fd
 void			get_map(const char *argv[], t_fdf *fdf);
 int				get_map_width(char *map);
 int				get_map_height(char *map);
+char			*read_map(const char *map, t_fdf *fdf);
+void			malloc_map(t_fdf *fdf);
+void			fill_map(t_map *map);
+char			*replace_nl_w_space(char *str);
+void			find_highest_and_lowest(t_map *map);
 
 // draw -> draw map parsed from fd
 void			draw_map(void *param);
-void			bresenham(float x, float y, float x1, float y1, t_fdf *fdf);
+void			bresenham(t_point *point, t_fdf *fdf);
 void			iso_transform(float *x, float *y, int z, t_fdf *fdf);
 void			reset_map(t_fdf *fdf);
+int				color_plus(int z);
+int				color_minus(int z);
+int				get_color(int z);
+void			map_zoom(t_point *point, t_fdf *fdf);
+void			calculate_pos(t_point *point, t_fdf *fdf);
+void			move_z(int *z, int *z1, t_fdf *fdf);
 
 // move
 void			ft_scrollhook(double xdelta, double ydelta, void *param);
+void			move_keys(t_fdf *fdf);
+void			move_angle(t_fdf *fdf);
+void			move_iso(t_fdf *fdf);
+void			move_z_index(t_fdf *fdf);
 
 // fdf utils
 char			**ft_split(char *s, char c);
@@ -118,16 +152,20 @@ int				ft_isnum(int c);
 int				ft_isalpha(int c);
 int				num_or_alph(int c);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
-
+void			get_z_index(int *z, int *z1, t_point *point, t_fdf *fdf);
+void			print_error(char *msg);
+char			*make_str(t_fdf *fdf);
 // printing map -> for testing purposes
 void			print_formatted(t_map *map);
 void			free_map_formatted(t_fdf *fdf);
 
 // memory and clean exits
-int				free_all(t_fdf *fdf);
+void			free_all(t_fdf *fdf);
 void			free_z_index(t_fdf *fdf);
 void			free_z_index_i(t_fdf *fdf, int i);
 void			free_map_formatted(t_fdf *fdf);
-char			exit_and_close(t_fdf *fdf);
-
+void			free_and_exit(t_fdf *fdf);
+void			ft_free(char **buffer);
+void			ft_free_multi(char **buffer, char **buffer2);
+void			ft_free_and_exit(char **buffer, t_fdf *fdf);
 #endif

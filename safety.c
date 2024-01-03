@@ -6,16 +6,15 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 18:02:42 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/24 13:06:06 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 11:41:02 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	exit_and_close(t_fdf *fdf)
+void	free_and_exit(t_fdf *fdf)
 {
 	free_all(fdf);
-	perror("error with map");
 	exit(EXIT_FAILURE);
 }
 
@@ -63,7 +62,7 @@ void	free_map_formatted(t_fdf *fdf)
 	fdf->map->map_formatted = 0;
 }
 
-int	free_all(t_fdf *fdf)
+void	free_all(t_fdf *fdf)
 {
 	if (fdf->map->z_index)
 		free_z_index(fdf);
@@ -77,5 +76,4 @@ int	free_all(t_fdf *fdf)
 		free(fdf->map);
 	if (fdf)
 		free(fdf);
-	return (0);
 }
