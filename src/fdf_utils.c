@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:41:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 11:02:37 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:34 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 static int	sign_count(char num)
 {

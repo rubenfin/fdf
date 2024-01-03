@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 11:12:47 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 11:41:24 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:18:02 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	ft_free(char **buffer)
 {

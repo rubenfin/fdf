@@ -1,43 +1,40 @@
-SRCS_MANDATORY = draw.c ft_split.c main.c read_map.c fill_map.c \
-hooks.c move.c safety.c safety2.c window.c math.c color.c math_utils.c fdf_utils.c fdf_utils2.c
+NAME	:= fdf
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+LIBMLX	:= ./lib/MLX42
 
-OBJS = $(SRCS_MANDATORY:%.c=$(OBJS_DIR)/%.o)
+HEADERS	:= -I ./include -I $(LIBMLX)/include
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+SRCS	:= $(shell find ./src -iname "*.c")
+OBJS	:= $(patsubst ./src/%.c,objs/%.o,$(SRCS))
 OBJS_DIR = objs
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g 
-RM = rm -rf 
-MLXPATH = libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-VPATH = .
+all: libmlx $(NAME)
 
-INCLUDE = -I./.
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-NAME = fdf
-
-all: $(NAME)
-
-$(OBJS_DIR)/%.o:	%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_DIR)/%.o: ./src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXPATH) $(INCLUDE)
-	@echo "$(GREEN)Compiled mandatory!$(DEFAULT)"
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@echo "$(GREEN)Compiled!$(DEFAULT)"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
 clean:
-	@$(RM) $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)
 	@echo "$(YELLOW)Removed all objects!$(DEFAULT)"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@rm -rf $(NAME)
 	@echo "$(RED)Removed executables!$(DEFAULT)"
 
-re: fclean all
+re: clean all
 
-.PHONY: all clean fclean re
-
+.PHONY: all clean fclean re libmlx
 
 #COLORS
 RED = \033[1;31m

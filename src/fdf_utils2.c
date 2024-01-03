@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 10:20:59 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 11:49:13 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:36 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 char	*ft_strdup(const char *s)
 {

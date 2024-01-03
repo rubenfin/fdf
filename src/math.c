@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/31 17:25:31 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 10:20:19 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:50 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	iso_transform(float *x, float *y, int z, t_fdf *fdf)
 {

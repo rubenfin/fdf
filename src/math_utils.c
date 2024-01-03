@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 10:26:01 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 10:26:44 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:48 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	map_zoom(t_point *point, t_fdf *fdf)
 {

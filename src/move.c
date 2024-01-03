@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/02 11:42:32 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/02 11:45:00 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:53 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	move_keys(t_fdf *fdf)
 {

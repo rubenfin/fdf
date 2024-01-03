@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/09 11:24:00 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 13:12:15 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:41 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	ft_scrollhook(double xdelta, double ydelta, void *param)
 {
@@ -26,7 +26,7 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	else if (ydelta < 0)
 		fdf->map->map_zoom *= 0.98;
 	draw_map(fdf);
-	UNUSED(xdelta);
+	(void)xdelta;
 }
 
 void	ft_hook(void *param)

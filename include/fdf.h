@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 13:19:26 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 13:50:52 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 // libraries
-# include </home/rfinneru/Codam/rank 02/MLX42/include/MLX42/MLX42.h>
+# include <../lib/MLX42/include/MLX42/MLX42.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -55,8 +55,6 @@
 # define COLOR_MINNINE 0x124099FF
 # define COLOR_MINTEN 0x000098FF
 
-// MACROS
-# define UNUSED(x) (void)(x)
 
 typedef struct t_data
 {
@@ -103,7 +101,6 @@ typedef struct t_fdf
  * creates a window, creates an image and puts the image inside this window.
  */
 int				make_window(t_fdf *fdf);
-
 /**
  * hook which refreshes every frame and checks if any key is pressed,
  *	if so changes the variable according to this keypress

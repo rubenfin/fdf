@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/02 11:07:34 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/02 11:07:43 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:35:25 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 int	color_plus(int z)
 {
@@ -55,7 +55,7 @@ int	color_minus(int z)
 		return (COLOR_MINSEVEN);
 	else if (z > -10)
 		return (COLOR_MINEIGHT);
-	else if (z > -11)
+	else if (z >= -11)
 		return (COLOR_MINNINE);
 	else if (z <= -12)
 		return (COLOR_MINTEN);

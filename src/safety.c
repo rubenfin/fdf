@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 18:02:42 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 11:41:02 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:18:00 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	free_and_exit(t_fdf *fdf)
 {

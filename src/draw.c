@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:34:09 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 10:28:29 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:32 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	reset_map(t_fdf *fdf)
 {

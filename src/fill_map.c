@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:32:44 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 11:54:21 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:37 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	malloc_map(t_fdf *fdf)
 {

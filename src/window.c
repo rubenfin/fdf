@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:49:00 by rfinneru      #+#    #+#                 */
-/*   Updated: 2023/12/22 10:30:32 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:18:04 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	put_string(t_fdf *fdf)
 {
@@ -21,7 +21,9 @@ void	put_string(t_fdf *fdf)
 		/ 10.8);
 	mlx_put_string(fdf->mlx, "MOVE-DOWN: S | DOWN-ARROW", WIDTH / 15, HEIGHT
 		/ 9.5);
-	mlx_put_string(fdf->mlx, "QUIT: ESC | Q", WIDTH / 15, HEIGHT / 8);
+	mlx_put_string(fdf->mlx, "ROTATE: Q & E", WIDTH / 15, HEIGHT / 8.5);
+	mlx_put_string(fdf->mlx, "UP & DOWN: Z & X", WIDTH / 15, HEIGHT / 7.75);
+	mlx_put_string(fdf->mlx, "QUIT: ESC | 1", WIDTH / 15, HEIGHT / 7.1);
 }
 
 int	make_window(t_fdf *fdf)

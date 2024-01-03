@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:55:10 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 13:06:29 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:44 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 int	argc_check(int argc, t_fdf *fdf)
 {

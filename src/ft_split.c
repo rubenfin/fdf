@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/02 11:47:10 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/02 11:47:45 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:39 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 static void	free_array(char **split_array, int i)
 {

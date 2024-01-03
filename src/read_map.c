@@ -6,11 +6,11 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/02 11:15:05 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 13:04:39 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/03 14:17:57 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	check_fdf_file(const char *str, t_fdf *fdf)
 {
