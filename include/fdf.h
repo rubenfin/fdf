@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/27 17:30:29 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 13:50:52 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/11 11:47:00 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 // libraries
-# include <../lib/MLX42/include/MLX42/MLX42.h>
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -55,7 +55,6 @@
 # define COLOR_MINNINE 0x124099FF
 # define COLOR_MINTEN 0x000098FF
 
-
 typedef struct t_data
 {
 	float		angle_cos;
@@ -76,8 +75,6 @@ typedef struct t_map
 	int			del_count;
 	int			**z_index;
 	double		map_zoom;
-	int			highest;
-	int			lowest;
 	char		**color;
 	t_data		*data;
 }				t_map;
@@ -109,13 +106,16 @@ void			ft_hook(void *param);
 
 // map -> parse map from fd
 void			get_map(const char *argv[], t_fdf *fdf);
-int				get_map_width(char *map);
+int				get_map_width(char *map, t_fdf *fdf);
 int				get_map_height(char *map);
 char			*read_map(const char *map, t_fdf *fdf);
 void			malloc_map(t_fdf *fdf);
 void			fill_map(t_map *map);
 char			*replace_nl_w_space(char *str);
 void			find_highest_and_lowest(t_map *map);
+int				get_prev_count(char *map, int *i);
+int				check_for_same_width(int i, char *map, int prev_count,
+					t_fdf *fdf);
 
 // draw -> draw map parsed from fd
 void			draw_map(void *param);
@@ -152,6 +152,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len);
 void			get_z_index(int *z, int *z1, t_point *point, t_fdf *fdf);
 void			print_error(char *msg);
 char			*make_str(t_fdf *fdf);
+
 // printing map -> for testing purposes
 void			print_formatted(t_map *map);
 void			free_map_formatted(t_fdf *fdf);
@@ -165,4 +166,5 @@ void			free_and_exit(t_fdf *fdf);
 void			ft_free(char **buffer);
 void			ft_free_multi(char **buffer, char **buffer2);
 void			ft_free_and_exit(char **buffer, t_fdf *fdf);
+void			print_free_exit(char *msg, t_fdf *fdf);
 #endif

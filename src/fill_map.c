@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/01 16:32:44 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 14:17:37 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/10 11:29:57 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,4 @@ char	*replace_nl_w_space(char *str)
 		i++;
 	}
 	return (str);
-}
-
-void	find_highest_and_lowest(t_map *map)
-{
-	int	x;
-	int	y;
-	int	lowest;
-	int	highest;
-
-	x = 0;
-	y = 0;
-	lowest = INT_MAX;
-	highest = INT_MIN;
-	while (x < map->height)
-	{
-		y = 0;
-		while (y < map->width)
-		{
-			if (map->z_index[x][y] > highest)
-				highest = map->z_index[x][y];
-			if (map->z_index[x][y] < lowest)
-				lowest = map->z_index[x][y];
-			y++;
-		}
-		x++;
-	}
-	map->highest = highest;
-	map->lowest = lowest;
 }

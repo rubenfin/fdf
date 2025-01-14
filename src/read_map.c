@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/02 11:15:05 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 14:17:57 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/11 11:41:54 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,28 @@ int	get_map_height(char *map)
 	return (count);
 }
 
-int	get_map_width(char *map)
+int	get_map_width(char *map, t_fdf *fdf)
 {
 	int	i;
 	int	count;
+	int	prev_count;
 
 	i = 0;
+	prev_count = get_prev_count(map, &i);
+	if (map[i] == '\0')
+		return (prev_count);
+	i = 0;
 	count = 0;
-	if (num_or_alph(map[i]))
-		count++;
-	while (map[i] && map[i] != '\n')
+	while (map[i])
 	{
-		if (num_or_alph(map[i]) && map[i + 1] == ' ')
-			count++;
+		count = check_for_same_width(i, map, prev_count, fdf);
 		i++;
 	}
-	if ((count == 0) && (map[0] >= '0' && map[0] <= '9'))
-		return (1);
-	return (count);
+	if (count == prev_count)
+		fdf->map->height++;
+	else if (count)
+		print_free_exit("use same width for every line", fdf);
+	return (prev_count);
 }
 
 char	*read_map(const char *map, t_fdf *fdf)
@@ -112,7 +116,7 @@ void	get_map(const char *argv[], t_fdf *fdf)
 	check_fdf_file(argv[1], fdf);
 	fdf->map->map = read_map(argv[1], fdf);
 	fdf->map->height = get_map_height(fdf->map->map);
-	fdf->map->width = get_map_width(fdf->map->map);
+	fdf->map->width = get_map_width(fdf->map->map, fdf);
 	fdf->map->map = replace_nl_w_space(fdf->map->map);
 	fdf->map->del_count = count_delimiter(fdf->map->map, ' ');
 	fdf->map->map_formatted = ft_split(fdf->map->map, ' ');
@@ -120,5 +124,4 @@ void	get_map(const char *argv[], t_fdf *fdf)
 		free_and_exit(fdf);
 	malloc_map(fdf);
 	fill_map(fdf->map);
-	find_highest_and_lowest(fdf->map);
 }

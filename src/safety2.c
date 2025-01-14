@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 11:12:47 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/01/03 14:18:02 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/01/11 11:23:52 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,11 @@ void	ft_free_and_exit(char **buffer, t_fdf *fdf)
 {
 	ft_free(buffer);
 	free_and_exit(fdf);
+}
+
+void	print_free_exit(char *msg, t_fdf *fdf)
+{
+	print_error(msg);
+	free_all(fdf);
+	exit(EXIT_FAILURE);
 }
