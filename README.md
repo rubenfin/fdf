@@ -27,7 +27,7 @@ The `fdf` program operates in a few key stages:
 
 3.  **Drawing**: The program uses the ML42 library to draw lines between the projected 2D points. These lines connect adjacent points in the grid (e.g., `(x, y)` to `(x+1, y)` and `(x, y)` to `(x, y+1)`), creating the wireframe effect.
 
-4.  **User Interaction**: The program handles keyboard and/or mouse events to allow the user to control the view. Common features include zooming in/out, changing the projection angle, or moving the map.
+4.  **User Interaction**: The program handles keyboard and mouse events to allow the user to control the view. Common features include zooming in/out, changing the projection angle, or moving the map.
 
 ---
 
@@ -65,10 +65,6 @@ The program takes a `.fdf` map file as an argument.
 
 ## Project Contributor
 
--   **Ruben Finales** - [rubenfin](https://github.com/rubenfin)
+-   **Ruben Finnerud** - [rubenfin](https://github.com/rubenfin)
 
 ---
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
